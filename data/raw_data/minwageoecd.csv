@@ -1,0 +1,358 @@
+COUNTRY,Country,Series,Pay period,TIME,Time,Unit Code,Value
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,8.45351511548505
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,8.46630896452136
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,8.55943233362088
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,8.66122618592239
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,9.17399852747802
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,9.38117598835241
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,11.3862329016416
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,12.0721411526942
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,11.7571544673001
+ESP,Spain,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,11.3552539104474
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,13.5238822046141
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,13.5982492791249
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,13.7072581818651
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,13.767598590645
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,13.753757826226
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,13.6698576193912
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,13.7252847991065
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,13.8236261642623
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,13.81
+FRA,France,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,13.82
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,7.35427849019748
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,7.30179607896496
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,7.39982133234355
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,7.59578014083554
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,7.79349578840926
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,7.95348529505536
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,8.15820126437971
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,8.3471635844606
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,8.44167726461587
+JPN,Japan,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,8.49439638869082
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,5.82421522213171
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,6.11213635118702
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,6.42295339667657
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,6.83541893711871
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,7.23935769515698
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,7.46597113927114
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,7.82495556502168
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,8.74700581206051
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,8.96658891797403
+POL,Poland,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,8.42360338444952
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,10.5055963136131
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,10.6586944612248
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,11.0584352901186
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,11.3629406920135
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,11.5251450646907
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,11.7502698051046
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,12.4271809173058
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,13.0603009589635
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,13.3284587173466
+NZL,New Zealand,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,13.1739765427577
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,5.81367683395541
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,6.15390880638187
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,6.54471523404657
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,7.00445357316628
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,7.37221757177771
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,8.45524482132919
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,9.34022878888674
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,9.55734001143688
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,9.46549987720212
+KOR,Korea,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,9.46171539823848
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,8.08670746464117
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,8.12242125904148
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,8.18645454971285
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,8.19095953991819
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,8.22087909105656
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,8.46013982422573
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,8.75742507022188
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,9.29539936712408
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,9.93178106497756
+SVN,Slovenia,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,9.57282548167947
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,2.96627312401569
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,3.06149054749886
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,3.144193029913
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,3.31707983797528
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,3.41573116748644
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,3.49689464416062
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,3.63902849327214
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,3.77275683842949
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,3.77055573201567
+CHL,Chile,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,3.70305724104977
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,4.30957595241136
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,4.42600809607317
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,4.79604111435786
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,5.08393497070566
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,5.57945263020134
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,6.05790581041952
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,6.51780146305534
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,6.80947399646644
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,6.79804242254105
+CZE,Czechia,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,6.29124181477788
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,3.8161071681204
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,4.28260404432767
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,4.72811032884542
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,5.12460281180684
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,5.42348402940567
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,5.60166237117651
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,5.91951915550596
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,6.44607745474247
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,6.15946717680417
+EST,Estonia,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,5.72207044076249
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,12.7423370669714
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,13.235073646781
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,13.1962722263654
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,13.1580043636744
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,13.4342914253021
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,13.3695555668784
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,13.6021368699342
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,13.8265663419131
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,13.9541991079031
+LUX,Luxembourg,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,13.5632391145786
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,4.11220713974168
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,4.26863001078588
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,4.39945917870627
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,4.63609285551818
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,5.14148477742139
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,5.4042693694101
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,5.71588970076589
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,5.97724779864877
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,5.81925383446035
+HUN,Hungary,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,6.16204138035835
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,9.6326579942714
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,9.7110238633605
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,9.96112853455837
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,10.8412252208934
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,10.9067737056454
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,11.1189321824611
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,11.4552484386713
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,11.9958914771387
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,12.0735996629439
+GBR,United Kingdom,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,11.8002662947795
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,12.5256450089782
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,12.5818525657565
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,12.6024446280817
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,12.806086413619
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,12.8593162147332
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,12.8678427282665
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,12.8506650208303
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,13.0100009378797
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,12.8693728601168
+NLD,Netherlands,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,12.0289467943393
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,9.52088932702279
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,9.58231483892449
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,9.73080519364237
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,9.88118650428104
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,10.0530186277924
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,11.1096001701923
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,11.2957587954816
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,11.5016223847378
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,11.3845332025289
+CAN,Canada,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,11.1245052492568
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,5.04485756519048
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,5.10927308160418
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,5.32632384955995
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,6.57744746800605
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,6.38684181779846
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,6.26851515195493
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,6.8608666949672
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,7.02914375809717
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,7.14452503166023
+TUR,Türkiye,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,8.81243086987132
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,1.00314105190465
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,1.00197145606553
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,1.02233096551319
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,1.05657946837245
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,1.09187469531917
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,1.14907566485091
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,1.28845216695208
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,1.49539664911857
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,1.62710059361847
+MEX,Mexico,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,1.83974541422676
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,3.71310987374588
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,3.87292472262592
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,4.18711009080236
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,4.49860721232741
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,4.76432638900679
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,5.13082547598145
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,5.34170156173434
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,5.91521099004456
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,6.16511892518549
+SVK,Slovak Republic,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,5.66529844364631
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,5.99513143044492
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,5.96650492967173
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,6.36867340948537
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,6.64939858904523
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,6.99934692838188
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,7.36271702532425
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,7.3006771030535
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,7.3458106716496
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,7.23398551054148
+ISR,Israel,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,7.02925288041271
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,9.26353873559826
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,9.2466596688281
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,9.27354172617578
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,9.80876985096963
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,9.88231711269959
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,10.1532393028888
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,10.3221017805772
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,10.6737973731057
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,10.5311392169097
+IRL,Ireland,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,10.0557856681112
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,12.9781361850971
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,13.0154933909223
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,13.1769726004659
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,13.3307638693632
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,13.4495583663711
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,13.6445469560686
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,13.861185596832
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,14.0739108970574
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,13.9742125212247
+AUS,Australia,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,13.6122073962705
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,5.60591483446758
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,5.68045618968289
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,5.78080532646554
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,5.82893234881055
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,5.76429961896548
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,5.72846119096096
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,6.28584220621461
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,6.41832308074576
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,6.34072367817691
+GRC,Greece,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,6.2
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,12.9792157836051
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,12.9352356160092
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,12.8630188780987
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,12.7408654917425
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,12.7256597390436
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,12.5929396803159
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,12.6624429493776
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,12.695512639127
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,12.5994109856798
+BEL,Belgium,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,12.6536891097825
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,5.74133624473989
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,5.75735050905774
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,5.96572717015782
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,6.22319153981225
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,6.45192184809204
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,6.65230132460595
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,6.85846328357968
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,7.25911662784359
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,7.50735899302298
+PRT,Portugal,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,7.38084486476837
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,9.10789281645221
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,8.96250106482811
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,8.95188170398463
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,8.84035329153365
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,8.65597157509853
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,8.44958346082443
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,8.29918479775503
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,8.19805487205278
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,7.83020298698772
+USA,United States,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,7.25
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,12.7116912176516
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,12.6494875366495
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,12.9598387187318
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,12.7391748517034
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,13.0548246526802
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,13.2628981016807
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,13.088476829664
+DEU,Germany,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,13.55
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,2.14829769647319
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,2.1575031657351
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,2.15374099725442
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,2.21189252915395
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,2.27669928333354
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,2.23605730771214
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,2.2550088880611
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,2.28773011674076
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,2.22354576136589
+BRA,Brazil,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,2.44994314797769
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,1.7148823233793
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,1.69709588170215
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,1.577345489586
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,1.53286885571115
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,1.82299589654708
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,2.45646808974432
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,2.5010157833006
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,2.6015047966771
+RUS,Russian Federation,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,2.57134545707037
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,3.69457759284275
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,3.89141018115735
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,4.85884577239024
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,5.50491174178187
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,5.53393083578163
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,5.69049630642802
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,7.69416770018882
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,7.60294043982703
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,8.41968846593363
+LTU,Lithuania,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,8.00015749750778
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,3.6505319534026
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,4.08791027130811
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,4.59089980685328
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,4.71179855990833
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,4.70137677932831
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,5.18847907091741
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,5.04659885805587
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,5.03556788948443
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,5.66958638936487
+LVA,Latvia,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,4.8329830379556
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,2.65885430402386
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,2.70010698259603
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,2.69013988806077
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,2.67729043112729
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,2.74622476208899
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,2.81696517914423
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,2.88436447901571
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,2.98208064311365
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,2.98222227825382
+COL,Colombia,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,2.97927618831265
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,3.47922487558351
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,3.46437060090216
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,3.67101599527658
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,3.77466217878177
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,3.71427829103278
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,3.72186620863271
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,3.74306940169098
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,3.80993282731315
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,4.31217963097527
+CRI,Costa Rica,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,4.06586863134732
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,2.91621000347034
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,3.26303803227393
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,3.79660439638899
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,4.39487603127398
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,5.34164257108164
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,6.80321258601367
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,7.16744775132389
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,7.74507541001601
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,7.43987063298735
+ROU,Romania,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,6.6414651760923
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,1.53921846828312
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,1.56024930616512
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,1.54754905762405
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,1.54988906631736
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,1.54641522627165
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,1.54470812349651
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,1.55080514871644
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,1.56924386055923
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,1.57346312991693
+MLT,Malta,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,1.49686227025875
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,2.714
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,3.027
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,3.323
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,3.818
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,4.196
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,4.515
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,4.837
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,5.19
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,5.405
+BGR,Bulgaria,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,5.122
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2013,2013,USD,4.47272009575723
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2014,2014,USD,4.64487145890375
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2015,2015,USD,4.67536408712283
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2016,2016,USD,4.84548690516081
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2017,2017,USD,5.02205708420537
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2018,2018,USD,5.19269703529946
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2019,2019,USD,5.61646405872551
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2020,2020,USD,6.08332290135834
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2021,2021,USD,6.19810814803719
+HRV,Croatia,In 2022 constant prices at 2022 USD PPPs,Hourly,2022,2022,USD,6.17710581009153
