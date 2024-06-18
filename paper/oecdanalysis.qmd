@@ -1,0 +1,234 @@
+---
+title: "Analyzing the Impact of Hourly Wage on Worker Productivity: A Multi-Country Study from 2013 to 2022"
+subtitle: "A Linear Regression Approach Using OECD Data on GDP per Hour Worked and Hourly Wage"
+author: 
+  - Hyuk Jang
+thanks: "Code and data are available at: https://github.com/anggimude/OECD."
+date: today
+date-format: long
+abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+format: pdf
+toc: true
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+#| echo: false
+
+# work space setup
+library(tidyverse)
+library(arrow)
+library(dplyr)
+library(purrr)
+library(rstanarm)
+library(ggplot2)
+library(modelsummary)
+library(bayesplot)
+library(parameters)
+library(broom)
+library(kableExtra)
+library(gt)
+library(broom.mixed)
+library(tidyr)
+library(here)
+
+# read data
+cleaned_table <- read_csv("~/oecd/data/analysis_data/cleaned_table.csv")
+econ_norm_data_centered <-
+  readRDS(file = here::here("~/oecd/models/econ_norm_model.rds"))
+```
+
+
+# Introduction
+
+You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+
+The remainder of this paper is structured as follows. @sec-data....
+
+
+
+# Data {#sec-data}
+
+
+
+```{r}
+#| label: fig-graph_1
+#| fig-cap: Economic Metrics by Time and Country
+#| echo: false
+#| warning: false
+#| message: false
+
+long_data <- cleaned_table |>
+  pivot_longer(cols = c(`GDP per head of population`, `GDP per hour worked`, `GDP per person employed`, `Hourly Wage`),
+               names_to = "Metric",
+               values_to = "Value")
+
+ggplot(long_data, aes(x = Time, y = Value, color = Metric)) +
+  geom_point() +
+  facet_wrap(~ Country) + # To show data for each country separately
+  ggtitle("Economic Metrics Over Time") +
+  xlab("Time") +
+  ylab("Value") +
+  theme_minimal()
+```
+
+Talk more about it.
+
+And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+
+## Basic Summary Statistics
+
+@tbl-sumsta is a representation of an summary of the suicide rates of the different age groups. The summary includes the minimum, maximum, mean, standard deviation, variance, and number of observations. The observations is 13 as the summary is created from @tbl-sum_sta, and we have 13 rows representing region/income group/sex. It is shown that the age-standardized suicide rate has a mean of 10, with a minimum of 5, and a maximum of 16. Again it is noticeable that the older the age, suicide rate is higher. Moreover, the variance also gets larger, the older the age group. For example, because age 85+ group has a range of 14 to 132, and a mean of 59 which leads to a extreme variance of 1806 as the data is skewed off the global averages. As the younger the age group, the summary becomes more similar to the global average. The age groups from 15-74 are clustered around a mean of 15, and the ages 75~ consists of means higher than the previous group. 
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-sumsta
+#| tbl-cap: "Summary statistics of Worker Productivity, GDP per head of population, GDP per person employed, and Hourly Wage"
+
+datasummary(
+  (`GDP per person employed` + `GDP per head of population` + `GDP per person employed` + `Hourly Wage`) ~
+    Min + Mean + Max + SD + Var + N,
+  fmt = 0,
+  data = cleaned_table
+)
+
+```
+
+
+
+# Model
+
+The goal of the Bayesian model is to incorporate prior knowledge, such as insights from previous studies or analyses, into the selection of the model. In this paper, we use multiple linear regression because this model is commonly applied when predicting a continuous outcome variable based on multiple predictor variables. The normal (Gaussian) distribution is effective when used for modeling scenarios where the residuals of the data are assumed to be independent and normally distributed around the regression line. @tbl-sum_sta captures how suicide rate changes depending on various demographic segments. Given that our response variable, suicide rate is continuous and follows a normal distribution as we have seen from @fig-graph_1 and, each region/income group/sex demographic consists of data points clustered around its mean. Thus, the Gaussian family model from the Bayesian framework allows a flexible approach to understanding the relationships between the continuous outcome (age-standardized suicide rates(per 100,000 population)) and predictors (region/income/sex, age categories) with the benefits of integrating prior knowledge and quantifying uncertainty around estimates. 
+
+## Model set-up
+
+The multiple linear regression models utilized in this paper is run on R [@citeR] using the `rstanarm` package of @citerstanarm. We use the default priors from `rstanarm`. The response variable $y_i$ is defined as an individual observation of 'Age-standardized suicide rates (per 100 000 population)' for each combination of the explanatory variables. The intercept $\alpha$ represents the intercept of our linear model. It is the expected value of $y_i$ when all predictors are held at reference level. Each $\beta_j$ is the coefficient associated with each predictor in our model. This would correspond to the 'Region/Income/Sex', 'Age 85+', 'Age 75-84', ... , 'Age 15-24'. $\beta_j$ tells us the change in the expected suicide rate per unit change in the predictor assuming all else is held constant. We have specified that both $\alpha$ and $\beta_j$ will have normal priors with a mean of 0 and a standard deviation of 2.5. With this, the `rstanarm` model will internally adjust the priors based on the scale of the predictors to help with the convergence and effectiveness. The error term $\sigma$ is the standard deviation of the residual errors in our model. By default, the `rstanarm` uses the student-t distribution with 3 degrees of freedom for the standard deviation.
+
+\begin{align}
+y_i \mid \mu_i, \sigma &\sim \text{Normal}(\mu_i, \sigma^2) \\
+\mu_i &= \alpha + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots + \beta_p x_{ip} \\
+\alpha &\sim \text{Normal}(0, 2.5) \\
+\beta_j &\sim \text{Normal}(0, 2.5) \quad \text{for } j = 1, 2, \ldots, p \\
+\sigma &\sim \text{Exponential}(1)
+\end{align}
+
+
+### Model justification
+
+Based on our inference from @sec-data, we expect a stronger positive coefficient in male, and the relatively lower income groups. Because there is a higher suicide rate among males and lower income and lower-middle income groups, we can expect that when there is an increase in the suicide rates of these predictors, age-standardized suicide rate is likely to increase as well. Female and the higher income countries have lower suicide rates than the global average in which helps us conclude that an increase in suicide rates of these predictors isn't likely to increase the global average rate leading us to expect a negative coefficient. The results of the model will let us verify whether our expectations are true or false. 
+
+
+# Results
+
+## Overview of model results
+
+Our results are summarized in @tbl-modelsum. We are primarily interested how global age standardized suicide rate depends on each of its predictors. The multiple linear model provides us with the estimates for the intercept and coefficients for the predictors which are male, female, global, lower income, lower-middle, upper-middle, high income, Asia, Europe, North America, South America, Africa, Oceania, age 85+, age 75-84, age 65-74, age 55-64, age 45-54, age 35-44, age 25-34, age 15-24. The intercept represents the estimate of age-standardized suicide rate when the predictors are zero. The coefficients represent the additional suicide rates per 100,000 population associated with each predictor. The model results will display the estimates - posterior means or medians for each coefficient including the intercept, uncertainty measures - credible intervals. The output values of each predictor is the regression coefficient, meaning how much the outcome is expected to increase or decrease with a one unit increase in the suicide rate of that predictor, holding all else constant. The value in the brackets represent the Median Absolute Deviation of the posterior distributions of the coefficients. It conveys the dispersion around the median of each coefficient's posterior distribution, exhibiting how spread the distributions are. Num.Obs represents the number of observations made in the model. R2 is the R-squared value which is the proportion of variance in the dependent variable that can be explained by the independent variable. The R2 adj is the adjusted R squared which accounts for the number of predictors used. Log.lik is the log-likelihood which gives us an idea of the likelihood of the data, higher is better, but this is typically used for comparison between models. ELPD and ELPD s.e. explains the log predictive density and its standard error. The ELPD measures the sum of the log predictive densities for each observation, used for model comparison. LOOIC is an acronym for leave-one-out information criterion in which a lower value indicates a model with better out-of-sample predictive performance. WAIC stands for Watanabe-Akaike information criterion which is another measure of good fit; lower values are better fit. RMSE is the room mean squared error measuring the model's predictive performance where the lower values mean more accurate predicts. 
+
+## Multiple linear regression results {#sec-results}
+
+@tbl-modelsum is a table of the results from our model. The intercept is the baseline value which in our case is 3.07. Asia shows a negative coefficient of -1.45, suggesting lower values compared to the baseline, with a large standard error of 12.58. This can be interpreted as the predictor increases, the outcome tends to increase. Conversely, a negative coefficient indicates a decrease. Europe has a negligible negative effect of -0.11 on the outcome with a large standard error of 11.24. Female has a more substantial negative impact of -2.07 and the standard error of 16.91 defines considerable variability in the estimate. Global, high income, and lower income groups show minimal negative coefficients suggesting slight decreases from the baseline. Lower middle income presents almost a neutral effect of 0.01 which is surprising. Male shows a positive relation of 0.91 compared to the baseline. North American and Oceania have more notable negative and positive coefficients respectively in which we can observe significant regional variations. In general, age category shows an increasing trend in coefficients as age decreases. Age groups of 55~ has a very small coefficient, stipulating minor increases compared to the baseline, all with small standard errors. The younger age groups from 15-54 suggesting that younger ages are associated with increasing values of the age standardized suicide rate. With the model having a R-squared value of 0.791 is a good level of explanatory power supporting the accuracy of the results. The adjusted R-squared value is at 0.596, which is lower than the R-squared value which may be because the number of observations is only 13 not the whole dataset before getting the averages. The RMSE is at 0.64 telling us the average magnitude of the model's prediction errors and the value indicates better predictive accuracy. Thus, by ignoring values like LOOIC and WAIC as we don't have another model to compare it to and analyzing other results, we can conclude that the model is performing well on the dataset we have cleaned. Further evaluation of the model results will be done in @sec-model_details. 
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-modelsum
+#| tbl-cap: "Multiiple linear model summary"
+#| warning: false
+
+modelsummary(
+  list(
+    "Gaussian(Normal)" = econ_norm_data_centered
+  ),
+  statistic = "mad",
+  fmt = 2,
+  output = "kableExtra"
+) |>
+  kable_styling(font_size = 8.5)
+```
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: fig-credintv
+#| fig-cap: "Credibility intervals of the predictors"
+#| warning: false
+
+modelplot(econ_norm_data, conf_level = 0.95) +
+  labs(x = "95 per cent credibility interval")
+```
+
+
+
+# Discussion
+
+## First discussion point {#sec-first-point}
+
+If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+
+## Second discussion point
+
+## Third discussion point
+
+## Weaknesses and next steps
+
+Weaknesses and next steps should also be included.
+
+\newpage
+
+\appendix
+
+# Appendix {-}
+
+
+# Additional data details
+
+```{r}
+#| label: tbl-cleaned_table
+#| tbl-cap: GDP per head of population, GDP per hour worked, GDP per person employed, Hourly wage by Country and Time
+#| echo: false
+#| warning: false
+
+head(cleaned_table, n=280) |>
+  kable(
+    col.names = c("Country", "Year", "GDP per head of population", "GDP per hour worked", "GDP per person employed", "Hourly Wage"),
+    align = c("l", "r", "r", "r", "r", "r"),
+    digits = 2, 
+    booktabs = TRUE, 
+    linesep = ""
+  ) 
+```
+
+# Model details {#sec-model-details}
+
+## Posterior predictive check
+ 
+
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-ppcheck
+#| fig-cap: "Examining how the model fits, and is affected by, the data"
+
+pp_check(econ_norm_data_centered) +
+  theme_classic() +
+  theme(legend.position = "bottom")
+
+```
+
+
+
+\newpage
+
+
+# References
+
