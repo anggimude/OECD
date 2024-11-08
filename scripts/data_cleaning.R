@@ -77,6 +77,25 @@ cleaned_table <- cleaned_table |>
   )
 
 
+# Calculate the yearly averages
+yearly_avg <- cleaned_table %>%
+  group_by(Time) %>%
+  summarise(
+    Country = "Ae",  
+    `GDP per head of population` = mean(`GDP per head of population`, na.rm = TRUE),
+    `GDP per hour worked` = mean(`GDP per hour worked`, na.rm = TRUE),
+    `GDP per person employed` = mean(`GDP per person employed`, na.rm = TRUE),
+    `Hourly Wage` = mean(`Hourly Wage`, na.rm = TRUE)
+  )
+
+# Bind the averages to the original table
+ct_avg <- bind_rows(cleaned_table, yearly_avg)
+ct_avg <- ct_avg |>
+  arrange(Country)
+
+
 #### Save data ####
 write_csv(cleaned_table, "~/oecd/data/analysis_data/cleaned_table.csv")
 write_parquet(cleaned_table, "~/oecd/data/analysis_data/cleaned_table.parquet")
+write_csv(ct_avg, "~/oecd/data/analysis_data/ct_avg.csv")
+write_parquet(ct_avg, "~/oecd/data/analysis_data/ct_avg.parquet")

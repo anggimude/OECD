@@ -1,5 +1,5 @@
 ---
-title: "Analyzing the Impact of Hourly Wage on Worker Productivity: A Multi-Country Study from 2013 to 2022"
+title: "An Analysis on the Impact of Hourly Wage on Labour Productivity: A Multi-Country Study from 2013 to 2022"
 subtitle: "A Linear Regression Approach Using OECD Data on GDP per Hour Worked and Hourly Wage"
 author: 
   - Hyuk Jang
@@ -21,23 +21,23 @@ bibliography: references.bib
 
 # work space setup
 library(tidyverse)
-library(arrow)
-library(dplyr)
-library(purrr)
 library(rstanarm)
 library(ggplot2)
 library(modelsummary)
-library(bayesplot)
-library(parameters)
 library(broom)
 library(kableExtra)
 library(gt)
-library(broom.mixed)
+library(dplyr)
 library(tidyr)
+library(arrow)
+library(dplyr)
+library(purrr)
 library(here)
+library(patchwork)
 
 # read data
 cleaned_table <- read_csv("~/oecd/data/analysis_data/cleaned_table.csv")
+ct_avg <- read_csv("~/oecd/data/analysis_data/ct_avg.csv")
 econ_norm_data_centered <-
   readRDS(file = here::here("~/oecd/models/econ_norm_model.rds"))
 ```
@@ -45,15 +45,48 @@ econ_norm_data_centered <-
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+Labour productivity(GDP per hour worked) is defined as the amount of goods and services that an individual worker produces in a given amount of time(citation). OECD defines it by how efficiently labour input is combined with other factors of production and used in the production process. Factors that affect worker productivity include technological factors, motivational and behavioral factors, flexibility in internal labour markets, individual rewards, and so forth. This paper intends to look into the correlation between labour productivity and a measurable factor; minimum wage of OECD countries. Maximizing labour productivity is crucial for many countries and its economies because it leads to direct economic growth. Growth in productivity, an economy is able to produce and consume more in other words, produces more goods and services given the same input, allowing consumers to consume more goods and services at a reasonable price. These importance of labour productivity leads us to researching deeper into how hourly minimum wage may affect labour productivity as wage is a large motivating factor for all employees within a capitalist society. For accuracy of data, we use relevant data from the OECD(citation) for only the OECD countries as the member countries stimulate economic progress and world trade. In addition, the majority of OECD countries are high-income economies by the world bank income group, and very high in the human development index. In order to create a precise regression result, we look into the data of GDP per person employed, GDP per head of population, GDP per person employed, and Hourly Wage over the years 2013 to 2022 of all OECD countries other than 9 countries due to the availability to the data. 
 
-The remainder of this paper is structured as follows. @sec-data....
+This paper will produce a multiple linear regression to analyze the regression coefficients of each factor. The results of the model will be checked by doing a 95% confident interval on the regression coefficients. The results will allow us to analyze the correlation between average minimum hourly wage and average labour productivity, as well as each countries hourly minimum wage and labour productivity. The interaction terms represent how the effect of hourly wage on GDP per hour worked changes across different countries compared to the reference country. The data was obtained from the OECD database(citation). @citeR was used to clean the raw data to what we use for modelling in other to write an analysis of the intended study. The estimand of this paper are the intercept and coefficients of each predictors which correspond to hourly minimum wage and the countries. 
 
+This paper has 4 sections in total not including the introduction. In @sec-data we look at the data that used to carry out the reports including tables and graphs of cleaned data that will be used for the models and the summary statistics. In the next section, we discuss about the models that will be used to analyze our cleaned data, how it is set up and the justifications of it. Next we display and examine the results obtained from the models including tables of the model summaries which helps us make predictions. Lastly, we make final discussions of our results and research based on each cause and dive into some weaknesses that our paper has. In addition, we explore some next steps we or anyone else interested is willing to take after reading this paper. 
 
 
 # Data {#sec-data}
 
+## Raw Data
 
+The data used in this paper is derived from OECD data explorer for GDP(citataion), and hourly wage(citation). OECD database(citation) provides data of GDP per person employed, GDP per head of population, and GDP per person employed in terms of USD current purchasing power parities of all OECD countries. Minimum wage OECD data provides the minimum hourly wages of all OECD countries in current(2022) USD purchasing power parity for the selected years. For a valid analysis of the trends, we use the data available of the most recent 10 years which is 2013 to 2022. The GDP per hour worked(labour productivity) is used as the dependent variable for our model as we are interested in the correlation between the independent variables which is minimum hourly wage.
+
+The cleaning and modelling of the data for this paper was done through R [@citeR] with the aid of the following packages: tidyverse [@citetidyverse], dplyr [@citedplyr], rstanarm [@citerstanarm], ggplot2 [@citeggplot2], modelsummary [@citemodelsummary], kableExtra [@citekableExtra], arrow[@citearrow], tidyr[@citetidyr], purrr[@citepurrr], and broom[@citebroom].
+addddd
+
+## Cleaned Data
+
+The goal of the cleaning process of this paper is to create a table including GDP per person employed, GDP per head of population, GDP per person employed, Hourly Wage, Year as the columns for each OECD country as the row. To do this we merge the two raw data tables we have downloaded. After merging and doing some minor cleaning like removing repeated columns and rounding to two decimal points. To produce the correlation between average minimum hourly wage and GDP per head of population we must calculate the average hourly wage of all OECD countries for the 10 years. The cleaned table with all relevant data is available in @sec-data_details as the table is too large.
+
+As mentioned, @tbl-cleaned_table is the table that consists of all the data that will be relevant in the analysis in this paper. Below @tbl-countries_used is the table that shows us all 29 countries that are selected for analysis. There are 38 OECD member countries, but we only use 29 due to the availability of data. We won't be provided with an accurate regression result if we fill in missing points from different sources as the sources will not be from the same place creating discrepancies in methods of obtaining the data. Thus, instead of doing so, countries with missing data was removed; only the intersected data of all countries for the columns we have selected were kept and the rest were not considered.
+
+@fig-graph_1 displays @tbl-cleaned_table as a scatter plot. Each scatter plot is a representation of each country's economic metrics. The economic metrics values are changed into log form as the graphs become too difficult to interpret and the log representation shows the trend in a satisfactory manner; it is easier to interpret the trends. We can observe that certain countries have a much higher growth rate compared to the change in hourly wage over time. In general, we are not able to clearly see the trends in hourly wage and GDP per hour worked. This is likely because values of GDP per person employed, GDP per head of population are much larger than GDP per hour worked and hourly wage making the log values of them too small to be able to see a trend in the graph. Ireland and Luxembourg exhibit extreme growth in GDP per person employed and GDP per head of population. It is also observable all countries show a growing trend in all categories over time even if the rate is slow. 
+
+@fig-graph_2 presents a scatter plot of the GDP per hour worked against hourly wage over time. It is noticeable by looking at the average of the data that there has been an increasing trend in both hourly wage and GDP per hour worked over time. Some significant trends to mention include Spain, Ireland, and the US. Ireland has had a relatively small change in hourly wages while GDP per hour worked has increased remarkably. Spain has had a steep increase in hourly wages from 2018 to 2019 then slowly decreased while GDP per hour worked has increased at a regular rate. The US has decreased their hourly wages from 2013 on but has had an increase in GDP per hour worked the entire time which has converse from what we expected or the average shows. 
+
+
+```{r}
+#| label: tbl-countries_used
+#| tbl-cap: Countries Selected for Analysis
+#| echo: false
+#| warning: false
+
+countries_used <- sort(unique(cleaned_table$Country) )
+head(countries_used, n = 29) |>
+  kable(
+    col.names = c("Country"),
+    align = c("l"), 
+    booktabs = TRUE, 
+    linesep = ""
+  )
+```
 
 ```{r}
 #| label: fig-graph_1
@@ -68,7 +101,7 @@ long_data <- cleaned_table |>
                values_to = "Value")
 
 ggplot(long_data, aes(x = Time, y = Value, color = Metric)) +
-  geom_point() +
+  geom_jitter(width = 0.2, height = 0) +
   facet_wrap(~ Country) + # To show data for each country separately
   ggtitle("Economic Metrics Over Time") +
   xlab("Time") +
@@ -76,13 +109,67 @@ ggplot(long_data, aes(x = Time, y = Value, color = Metric)) +
   theme_minimal()
 ```
 
-Talk more about it.
+```{r}
+#| label: fig-graph_2
+#| fig-cap: GDP per Hour Worked and Hourly Wage by Time and Country
+#| echo: false
+#| warning: false
+#| message: false
 
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+# Calculate yearly averages
+yearly_averages <- short_data %>%
+  group_by(Time, Metric) %>%
+  summarize(Value = mean(Value, na.rm = TRUE)) %>%
+  mutate(Country = "Average")  # Label these as 'Average' to distinguish in the plot
+
+# Combine yearly averages with the original data
+combined_data <- bind_rows(short_data, yearly_averages)
+
+# Calculate a rescaling factor
+wage_scale <- max(combined_data %>% filter(Metric == "GDP per hour worked") %>% pull(Value)) /
+  max(combined_data %>% filter(Metric == "Hourly Wage") %>% pull(Value))
+
+# Plot with separate scales and averages
+ggplot(combined_data, aes(x = Time)) +
+  # GDP per hour worked
+  geom_point(
+    data = combined_data %>% filter(Metric == "GDP per hour worked" & Country != "Average"),
+    aes(y = Value, color = "GDP per hour worked")
+  ) +
+  geom_point(
+    data = combined_data %>% filter(Metric == "GDP per hour worked" & Country == "Average"),
+    aes(y = Value, color = "GDP per hour worked", linetype = "Average")  # Line for average
+  ) +
+  # Hourly Wage with rescaling
+  geom_point(
+    data = combined_data %>% filter(Metric == "Hourly Wage" & Country != "Average"),
+    aes(y = Value * wage_scale, color = "Hourly Wage")
+  ) +
+  geom_point(
+    data = combined_data %>% filter(Metric == "Hourly Wage" & Country == "Average"),
+    aes(y = Value * wage_scale, color = "Hourly Wage", linetype = "Average")
+  ) +
+  facet_wrap(~ Country) +
+  scale_y_continuous(
+    name = "GDP per hour worked",
+    sec.axis = sec_axis(~ . / wage_scale, name = "Hourly Wage")  # Rescale back to original
+  ) +
+  scale_color_manual(values = c("GDP per hour worked" = "red", "Hourly Wage" = "blue")) +
+  scale_linetype_manual(values = c("Average" = "dashed"), guide = "none") +  # Make averages dashed
+  ggtitle("GDP per Hour Worked against Hourly Wage") +
+  xlab("Time") +
+  theme_minimal() +
+  theme(
+    axis.title.y.left = element_text(color = "red"),
+    axis.title.y.right = element_text(color = "blue")
+  )
+
+
+```
 
 ## Basic Summary Statistics
 
-@tbl-sumsta is a representation of an summary of the suicide rates of the different age groups. The summary includes the minimum, maximum, mean, standard deviation, variance, and number of observations. The observations is 13 as the summary is created from @tbl-sum_sta, and we have 13 rows representing region/income group/sex. It is shown that the age-standardized suicide rate has a mean of 10, with a minimum of 5, and a maximum of 16. Again it is noticeable that the older the age, suicide rate is higher. Moreover, the variance also gets larger, the older the age group. For example, because age 85+ group has a range of 14 to 132, and a mean of 59 which leads to a extreme variance of 1806 as the data is skewed off the global averages. As the younger the age group, the summary becomes more similar to the global average. The age groups from 15-74 are clustered around a mean of 15, and the ages 75~ consists of means higher than the previous group. 
+@tbl-sumsta is a representation of a summary of the economic metrics data. The summary includes the minimum, maximum, mean, standard deviation, variance, and number of observations of the four different economic metrics we are using in this paper. We have a total of 290 observations because we have data of 29 countries for a 10 year period. It is shown that the mean hourly wage is 8 with a minimum of 1 and a maximum of 14, and the similar works for the other metrics as well. It is crucial to mention the notable variances which come from the large range of GDP per person employed and GDP per head of population. For instance, GDP per person employed has a minimum of 29380 and a maximum of 269404 which is a significantly large range. GDP per hour worked is less variant as the mean stays at 52 with a minimum of 12 and maximum of 163.
 
 
 ```{r}
@@ -92,7 +179,7 @@ And also planes (@fig-planes). (You can change the height and width, but don't w
 #| tbl-cap: "Summary statistics of Worker Productivity, GDP per head of population, GDP per person employed, and Hourly Wage"
 
 datasummary(
-  (`GDP per person employed` + `GDP per head of population` + `GDP per person employed` + `Hourly Wage`) ~
+  (`GDP per person employed` + `GDP per head of population` + `GDP per hour worked` + `Hourly Wage`) ~
     Min + Mean + Max + SD + Var + N,
   fmt = 0,
   data = cleaned_table
@@ -100,15 +187,13 @@ datasummary(
 
 ```
 
-
-
 # Model
 
-The goal of the Bayesian model is to incorporate prior knowledge, such as insights from previous studies or analyses, into the selection of the model. In this paper, we use multiple linear regression because this model is commonly applied when predicting a continuous outcome variable based on multiple predictor variables. The normal (Gaussian) distribution is effective when used for modeling scenarios where the residuals of the data are assumed to be independent and normally distributed around the regression line. @tbl-sum_sta captures how suicide rate changes depending on various demographic segments. Given that our response variable, suicide rate is continuous and follows a normal distribution as we have seen from @fig-graph_1 and, each region/income group/sex demographic consists of data points clustered around its mean. Thus, the Gaussian family model from the Bayesian framework allows a flexible approach to understanding the relationships between the continuous outcome (age-standardized suicide rates(per 100,000 population)) and predictors (region/income/sex, age categories) with the benefits of integrating prior knowledge and quantifying uncertainty around estimates. 
+The goal of the Bayesian model is to incorporate prior knowledge, such as insights from previous studies or analyses, into the selection of the model. In this paper, we use linear regression because this model is commonly applied when predicting a continuous outcome variable based on a predictor variables. The normal (Gaussian) distribution is effective when used for modeling scenarios where the residuals of the data are assumed to be independent and normally distributed around the regression line. Given that our response variable, labour productivity is continuous and random as we have seen from @fig-graph_1 the Gaussian family model from the Bayesian framework allows a flexible approach to understanding the relationships between the continuous outcome (labour productivity) and predictors (country, time, hourly wage) with the benefits of integrating prior knowledge and quantifying uncertainty around estimates. 
 
 ## Model set-up
 
-The multiple linear regression models utilized in this paper is run on R [@citeR] using the `rstanarm` package of @citerstanarm. We use the default priors from `rstanarm`. The response variable $y_i$ is defined as an individual observation of 'Age-standardized suicide rates (per 100 000 population)' for each combination of the explanatory variables. The intercept $\alpha$ represents the intercept of our linear model. It is the expected value of $y_i$ when all predictors are held at reference level. Each $\beta_j$ is the coefficient associated with each predictor in our model. This would correspond to the 'Region/Income/Sex', 'Age 85+', 'Age 75-84', ... , 'Age 15-24'. $\beta_j$ tells us the change in the expected suicide rate per unit change in the predictor assuming all else is held constant. We have specified that both $\alpha$ and $\beta_j$ will have normal priors with a mean of 0 and a standard deviation of 2.5. With this, the `rstanarm` model will internally adjust the priors based on the scale of the predictors to help with the convergence and effectiveness. The error term $\sigma$ is the standard deviation of the residual errors in our model. By default, the `rstanarm` uses the student-t distribution with 3 degrees of freedom for the standard deviation.
+Thelinear regression models utilized in this paper is run on R [@citeR] using the `rstanarm` package of @citerstanarm. We use the default priors from `rstanarm`. The response variable $y_i$ is defined as an individual observation of 'GDP per hour worked' for each combination of hourly wage and its corresponding country. The intercept $\alpha$ represents the intercept of our linear model. It is the expected value of $y_i$ when all predictors are held at reference level. Each $\beta_j$ is the coefficient associated with each predictor in our model. This would correspond to the different countries and years. $\beta_j$ tells us the change in the expected GDP per hour worked to per unit change in the predictor assuming all else is held constant. We have specified that both $\alpha$ and $\beta_j$ will have normal priors with a mean of 0 and a standard deviation of 2.5. With this, the `rstanarm` model will internally adjust the priors based on the scale of the predictors to help with the convergence and effectiveness. The error term $\sigma$ is the standard deviation of the residual errors in our model. By default, the `rstanarm` uses the student-t distribution with 3 degrees of freedom for the standard deviation.
 
 \begin{align}
 y_i \mid \mu_i, \sigma &\sim \text{Normal}(\mu_i, \sigma^2) \\
@@ -121,18 +206,18 @@ y_i \mid \mu_i, \sigma &\sim \text{Normal}(\mu_i, \sigma^2) \\
 
 ### Model justification
 
-Based on our inference from @sec-data, we expect a stronger positive coefficient in male, and the relatively lower income groups. Because there is a higher suicide rate among males and lower income and lower-middle income groups, we can expect that when there is an increase in the suicide rates of these predictors, age-standardized suicide rate is likely to increase as well. Female and the higher income countries have lower suicide rates than the global average in which helps us conclude that an increase in suicide rates of these predictors isn't likely to increase the global average rate leading us to expect a negative coefficient. The results of the model will let us verify whether our expectations are true or false. 
+Based on our inference from @fig-graph_2 and @tbl-cleaned_table, we create a new column including the hourly wage centered values of the hourly wage in other words we will use the data of hourly wage centered around the average hourly wages of the whole data set to each countries hourly wage dependent on year. This implies that the entire set of data will be clustered around a mean which allows us to use the normal distribution to produce an analysis. The intercept will represent the predicted value of GDP per hour worked when hourly wage is at average. Each country coefficients represent the difference in the intercept for each country compared to the reference country. In our case, the reference country is the average hourly wages; the process is specified in the data_cleaning code script. The hourly wage and country coefficient shows the effect of hourly wage on how GDP per hour worked changes for each country depending on the reference country. 
 
 
 # Results
 
 ## Overview of model results
 
-Our results are summarized in @tbl-modelsum. We are primarily interested how global age standardized suicide rate depends on each of its predictors. The multiple linear model provides us with the estimates for the intercept and coefficients for the predictors which are male, female, global, lower income, lower-middle, upper-middle, high income, Asia, Europe, North America, South America, Africa, Oceania, age 85+, age 75-84, age 65-74, age 55-64, age 45-54, age 35-44, age 25-34, age 15-24. The intercept represents the estimate of age-standardized suicide rate when the predictors are zero. The coefficients represent the additional suicide rates per 100,000 population associated with each predictor. The model results will display the estimates - posterior means or medians for each coefficient including the intercept, uncertainty measures - credible intervals. The output values of each predictor is the regression coefficient, meaning how much the outcome is expected to increase or decrease with a one unit increase in the suicide rate of that predictor, holding all else constant. The value in the brackets represent the Median Absolute Deviation of the posterior distributions of the coefficients. It conveys the dispersion around the median of each coefficient's posterior distribution, exhibiting how spread the distributions are. Num.Obs represents the number of observations made in the model. R2 is the R-squared value which is the proportion of variance in the dependent variable that can be explained by the independent variable. The R2 adj is the adjusted R squared which accounts for the number of predictors used. Log.lik is the log-likelihood which gives us an idea of the likelihood of the data, higher is better, but this is typically used for comparison between models. ELPD and ELPD s.e. explains the log predictive density and its standard error. The ELPD measures the sum of the log predictive densities for each observation, used for model comparison. LOOIC is an acronym for leave-one-out information criterion in which a lower value indicates a model with better out-of-sample predictive performance. WAIC stands for Watanabe-Akaike information criterion which is another measure of good fit; lower values are better fit. RMSE is the room mean squared error measuring the model's predictive performance where the lower values mean more accurate predicts. 
+Our results are summarized in @tbl-modelsum. We are primarily interested how labour productivity changes from its predictors. The normal distribution model provides us with the estimates for the intercept and coefficients for the predictors which the 29 countries and its hourly wage correlation as well. The model results will display the estimates - posterior means or medians for each coefficient including the intercept, uncertainty measures - credible intervals. The output values of each predictor is the regression coefficient, meaning how much the outcome is expected to increase or decrease with a one unit increase in hourly wage of that country, holding all else constant. The value in the brackets represent the Median Absolute Deviation of the posterior distributions of the coefficients. It conveys the dispersion around the median of each coefficient's posterior distribution, exhibiting how spread the distributions are. Num.Obs represents the number of observations made in the model. R2 is the R-squared value which is the proportion of variance in the dependent variable that can be explained by the independent variable. The R2 adj is the adjusted R squared which accounts for the number of predictors used. Log.lik is the log-likelihood which gives us an idea of the likelihood of the data, higher is better, but this is typically used for comparison between models. ELPD and ELPD s.e. explains the log predictive density and its standard error. The ELPD measures the sum of the log predictive densities for each observation, used for model comparison. LOOIC is an acronym for leave-one-out information criterion in which a lower value indicates a model with better out-of-sample predictive performance. WAIC stands for Watanabe-Akaike information criterion which is another measure of good fit; lower values are better fit. RMSE is the room mean squared error measuring the model's predictive performance where the lower values mean more accurate predicts. 
 
-## Multiple linear regression results {#sec-results}
+## Normal regression results {#sec-results}
 
-@tbl-modelsum is a table of the results from our model. The intercept is the baseline value which in our case is 3.07. Asia shows a negative coefficient of -1.45, suggesting lower values compared to the baseline, with a large standard error of 12.58. This can be interpreted as the predictor increases, the outcome tends to increase. Conversely, a negative coefficient indicates a decrease. Europe has a negligible negative effect of -0.11 on the outcome with a large standard error of 11.24. Female has a more substantial negative impact of -2.07 and the standard error of 16.91 defines considerable variability in the estimate. Global, high income, and lower income groups show minimal negative coefficients suggesting slight decreases from the baseline. Lower middle income presents almost a neutral effect of 0.01 which is surprising. Male shows a positive relation of 0.91 compared to the baseline. North American and Oceania have more notable negative and positive coefficients respectively in which we can observe significant regional variations. In general, age category shows an increasing trend in coefficients as age decreases. Age groups of 55~ has a very small coefficient, stipulating minor increases compared to the baseline, all with small standard errors. The younger age groups from 15-54 suggesting that younger ages are associated with increasing values of the age standardized suicide rate. With the model having a R-squared value of 0.791 is a good level of explanatory power supporting the accuracy of the results. The adjusted R-squared value is at 0.596, which is lower than the R-squared value which may be because the number of observations is only 13 not the whole dataset before getting the averages. The RMSE is at 0.64 telling us the average magnitude of the model's prediction errors and the value indicates better predictive accuracy. Thus, by ignoring values like LOOIC and WAIC as we don't have another model to compare it to and analyzing other results, we can conclude that the model is performing well on the dataset we have cleaned. Further evaluation of the model results will be done in @sec-model_details. 
+@tbl-modelsum is a table of the results from our model. The intercept is the baseline value which in our case is 52.15 implying the expected GDP per hour worked when hourly wage centered is at its mean $0. Hourly wage centered 11.24 conveys that for each unit(dollar 2022 PPPs) increase in hourly wage is expected to lead to an increase in GDP per hour worked by 11.24(dollar 2022 PPPs). Some notable trends in the results include Belgium, France, Australia, and Columbia. Belgium has a correlation coefficient of 301.27 and a standard deviation of 62.93. This describes that Belgium has a higher GDP per hour worked than the average by around 301.27 units when the hourly wage centered is at zero. Similarly, France is expected to have a labour productivity 327.19 units lower than the average at average centered wage, Australia 77.42 units lower, and Columbia 71.37 units higher. With the model having a R-squared value of 0.791 is a good level of explanatory power supporting the accuracy of the results. The interaction effects Hourly_Wage_Centered*Country captures how the relationship between hourly wage centered and GDP per hour worked by country compared to the averages. For instance, Belgium has a interaction effect of -67.43 implying the effect of an increase in hourly wage centered on GDP per hour worked is 67.43 units lower than the reference country. The adjusted R-squared value is at 0.934, which is lower than the R-squared value of 0.942 indicates strong results as 94.2% of the variance on GDP per hour worked is justified by the model. The RMSE is at 5.06 telling us the average magnitude of the model's prediction errors and the value indicates better predictive accuracy. Lower values imply better fit so we can assume that GDP per hour worked is predicted accurately. Thus, by ignoring values like LOOIC and WAIC as we don't have another model to compare it to and analyzing other results, we can conclude that the model is performing well on the data set we have cleaned. Further evaluation of the model results will be done in @sec-model_details. 
 
 
 ```{r}
@@ -154,28 +239,66 @@ modelsummary(
 ```
 
 
-```{r}
-#| echo: false
-#| eval: true
-#| label: fig-credintv
-#| fig-cap: "Credibility intervals of the predictors"
-#| warning: false
-
-modelplot(econ_norm_data, conf_level = 0.95) +
-  labs(x = "95 per cent credibility interval")
-```
-
-
 
 # Discussion
 
 ## First discussion point {#sec-first-point}
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+
+```{r}
+#| label: fig-graph_3
+#| fig-cap: Avergae Growth Rate of Hourly Wage and Labour Productivity
+#| echo: false
+#| warning: false
+#| message: false
+
+extractaehw <- ct_avg[ct_avg$Country == "Ae", ] |>
+  select(c(-`GDP per head of population`, -'GDP per person employed', -'GDP per hour worked'))
+hwgr <- extractaehw |>
+  mutate(growth_rate = (`Hourly Wage` - lag(`Hourly Wage`)) / lag(`Hourly Wage`) * 100) |>
+  drop_na(growth_rate) |>
+  select(c(-`Country`, -`Hourly Wage`))
+
+avggrhw <- hwgr |>
+  reframe(average_growth_rate = mean(growth_rate, na.rm = TRUE))
+
+plot1 <- ggplot(hwgr, aes(x = Time, y = growth_rate)) +
+  geom_line() +
+  labs(title = "Growth Rate of Hourly Wage",
+       x = "Year",
+       y = "Growth Rate (%)") +
+  theme_minimal()
+
+extractae <- ct_avg[ct_avg$Country == "Ae", ] |>
+  select(c(-`GDP per head of population`, -'GDP per person employed', -'Hourly Wage'))
+growthrate <- extractae |>
+  mutate(growth_rate = (`GDP per hour worked` - lag(`GDP per hour worked`)) / lag(`GDP per hour worked`) * 100) |>
+  drop_na(growth_rate) |>
+  select(c(-`Country`, -`GDP per hour worked`))
+
+avggr <- growthrate |>
+  reframe(average_growth_rate = mean(growth_rate, na.rm = TRUE))
+
+plot2 <- ggplot(growthrate, aes(x = Time, y = growth_rate)) +
+  geom_line() +
+  labs(title = "Growth Rate of GDP per Hour Worked",
+       x = "Year",
+       y = "Growth Rate (%)") +
+  theme_minimal()
+
+# Combine plots side by side using patchwork
+plot1 + plot2
+```
+To look into the general trend of the growth rate, we further analyze @fig-graph_2 to create @fig-grpah_3. This graph shows that on average, countries have been experiencing an increase in its labour productivity growth rate for the past decade while the rate of growth of hourly wages have been decreasing. This exhibits some discrepancies from what people generally assume and the actual results because we tend to expect that a higher salary will improve labour productivity. A noticeable trend from the average growth rate of hourly wage is that since 2020, there has been a steep decline. From 2020, the COVID-19 pandemic occurred which had led to the COVID-19 recession. From this inference, due to the global economic recession, we had a spike in inflation decreasing the real wage growth rate. This is correlated to our analysis and graph because we have standardized all values to US dollar purchasing power parities as of 2022, we are able to observe the real effects of these events on the economy. This partially explains the decrease in labour productivity from 2020 to 2021 as this must also be from the lockdown and the recession decreasing consumer confidence. The reason behind the growth in labour productivity may be from various reasons such as technological improvements, investments in human capital, investments in physical capital, and improved management practices. For the past few decades, technology has been improving at a significant rate each year which could be the underlying reason to labour productivity growth. 
+
+From @fig-graph_2, most countries, when scaled like our graph, have similar values in GDP per hour worked and hourly wage while some countries are able to reach the same level of labour productivity with lower minimum wages and some can't reach that level with even higher minimum wages implying that there may not be a strong correlation between minimum wage and labour productivity. One reasoning to such tendencies can be from the different costs of living and purchasing power. More developed countries with higher cost of living set the minimum wage high so that citizens are able to afford basic needs. For example, countries like the US, Australia, Canada, Luxembourg, UK, and Netherlands have a high price level index leading to higher minimum wages (citation). Some countries may even intentionally increase their minimum wage to fight income inequalities. For example, Australia has used such methods and has seen positive results with a tight labour market and an increase in minimum wages led to the unemployment averaging at 3.8%; lowest in 50 years (citation). Others may be supplementing lower minimum wages by providing generous social benefits. 
+
 
 ## Second discussion point
+How has the US lowered its hourly wage while haivng an increase in its GDP per hour worked?
 
 ## Third discussion point
+How has Ireland had so much growth? maybe combine with the US?
 
 ## Weaknesses and next steps
 
@@ -188,7 +311,7 @@ Weaknesses and next steps should also be included.
 # Appendix {-}
 
 
-# Additional data details
+# Cleaned data details {#sec-data_details}
 
 ```{r}
 #| label: tbl-cleaned_table
@@ -196,7 +319,7 @@ Weaknesses and next steps should also be included.
 #| echo: false
 #| warning: false
 
-head(cleaned_table, n=280) |>
+head(cleaned_table, n=300) |>
   kable(
     col.names = c("Country", "Year", "GDP per head of population", "GDP per hour worked", "GDP per person employed", "Hourly Wage"),
     align = c("l", "r", "r", "r", "r", "r"),
@@ -207,9 +330,7 @@ head(cleaned_table, n=280) |>
 ```
 
 # Model details {#sec-model-details}
-
 ## Posterior predictive check
- 
 
 ```{r}
 #| eval: true
@@ -225,7 +346,19 @@ pp_check(econ_norm_data_centered) +
 
 ```
 
+In @fig-ppcheck we implement a posterior predictive check. This show the comparison between the simulated data to the actual observed data to assess whether the model is adequate. This shows the comparison for the poisson model and we can assess how well each model fits the observed data. Based on the check we can conclude that the multiple linear model fits the observed data as the trace of the Y plot follows the trends of Yrep. 
 
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: fig-credintv
+#| fig-cap: "Credibility intervals of the predictors"
+#| warning: false
+
+modelplot(econ_norm_data_centered, conf_level = 0.95) +
+  labs(x = "95 per cent credibility interval")
+```
 
 \newpage
 
