@@ -116,6 +116,13 @@ ggplot(long_data, aes(x = Time, y = Value, color = Metric)) +
 #| warning: false
 #| message: false
 
+
+short_data <- cleaned_table |>
+  pivot_longer(cols = c(`GDP per hour worked`, `Hourly Wage`),
+               names_to = "Metric",
+               values_to = "Value") |>
+  filter(Metric %in% c("GDP per hour worked", "Hourly Wage"))
+
 # Calculate yearly averages
 yearly_averages <- short_data %>%
   group_by(Time, Metric) %>%
@@ -224,7 +231,7 @@ Our results are summarized in @tbl-modelsum. We are primarily interested how lab
 #| echo: false
 #| eval: true
 #| label: tbl-modelsum
-#| tbl-cap: "Multiiple linear model summary"
+#| tbl-cap: "Linear model summary"
 #| warning: false
 
 modelsummary(
@@ -247,7 +254,7 @@ modelsummary(
 
 ```{r}
 #| label: fig-graph_3
-#| fig-cap: Avergae Growth Rate of Hourly Wage and Labour Productivity
+#| fig-cap: Growth Rate of Hourly Wage and Labour Productivity
 #| echo: false
 #| warning: false
 #| message: false
@@ -264,7 +271,7 @@ avggrhw <- hwgr |>
 
 plot1 <- ggplot(hwgr, aes(x = Time, y = growth_rate)) +
   geom_line() +
-  labs(title = "Growth Rate of Hourly Wage",
+  labs(title = "Hourly Wage",
        x = "Year",
        y = "Growth Rate (%)") +
   theme_minimal()
@@ -281,7 +288,7 @@ avggr <- growthrate |>
 
 plot2 <- ggplot(growthrate, aes(x = Time, y = growth_rate)) +
   geom_line() +
-  labs(title = "Growth Rate of GDP per Hour Worked",
+  labs(title = "GDP per Hour Worked",
        x = "Year",
        y = "Growth Rate (%)") +
   theme_minimal()
@@ -292,7 +299,7 @@ plot1 + plot2
 To look into the general trend of the growth rate, we further analyze @fig-graph_2 to create @fig-grpah_3. This graph shows that on average, countries have been experiencing an increase in its labour productivity growth rate for the past decade while the rate of growth of hourly wages have been decreasing. This exhibits some discrepancies from what people generally assume and the actual results because we tend to expect that a higher salary will improve labour productivity. A noticeable trend from the average growth rate of hourly wage is that since 2020, there has been a steep decline. From 2020, the COVID-19 pandemic occurred which had led to the COVID-19 recession. From this inference, due to the global economic recession, we had a spike in inflation decreasing the real wage growth rate. This is correlated to our analysis and graph because we have standardized all values to US dollar purchasing power parities as of 2022, we are able to observe the real effects of these events on the economy. This partially explains the decrease in labour productivity from 2020 to 2021 as this must also be from the lockdown and the recession decreasing consumer confidence. The reason behind the growth in labour productivity may be from various reasons such as technological improvements, investments in human capital, investments in physical capital, and improved management practices. For the past few decades, technology has been improving at a significant rate each year which could be the underlying reason to labour productivity growth. 
 
 From @fig-graph_2, most countries, when scaled like our graph, have similar values in GDP per hour worked and hourly wage while some countries are able to reach the same level of labour productivity with lower minimum wages and some can't reach that level with even higher minimum wages implying that there may not be a strong correlation between minimum wage and labour productivity. One reasoning to such tendencies can be from the different costs of living and purchasing power. More developed countries with higher cost of living set the minimum wage high so that citizens are able to afford basic needs. For example, countries like the US, Australia, Canada, Luxembourg, UK, and Netherlands have a high price level index leading to higher minimum wages (citation). Some countries may even intentionally increase their minimum wage to fight income inequalities. For example, Australia has used such methods and has seen positive results with a tight labour market and an increase in minimum wages led to the unemployment averaging at 3.8%; lowest in 50 years (citation). Others may be supplementing lower minimum wages by providing generous social benefits. 
-
+i need to write a lot more
 
 ## Second discussion point
 How has the US lowered its hourly wage while haivng an increase in its GDP per hour worked?

@@ -1,7 +1,7 @@
 #### Preamble ####
 # Purpose: Models the correlation between worker productivity and hourly wage
 # Author: Hyuk Jang
-# Date: today
+# Date: 7 Nov 2024
 # Contact: hyuk.jang@mail.utoronto.ca
 # License: MIT
 

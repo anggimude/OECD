@@ -16,7 +16,6 @@ library(purrr)
 oecddata <- read_csv("data/raw_data/oecddata.csv")
 minwage <- read_csv("data/raw_data/minwageoecd.csv")
 
-
 minwage <- minwage |>
   select(c(-COUNTRY, -TIME))|>
   filter(Country != "Germany")
