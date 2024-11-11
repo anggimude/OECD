@@ -102,7 +102,6 @@ growthrate <- extractae |>
 avggr <- growthrate |>
   reframe(average_growth_rate = mean(growth_rate, na.rm = TRUE))
 
-library(ggplot2)
 ggplot(growthrate, aes(x = Time, y = growth_rate)) +
   geom_line() +
   labs(title = "Average Annual Growth Rate of GDP per Hour Worked",
@@ -120,7 +119,6 @@ hwgr <- extractaehw |>
 avggrhw <- hwgr |>
   reframe(average_growth_rate = mean(growth_rate, na.rm = TRUE))
 
-library(ggplot2)
 ggplot(hwgr, aes(x = Time, y = growth_rate)) +
   geom_line() +
   labs(title = "Average Annual Growth Rate of Hourly wage",
@@ -154,6 +152,12 @@ modelsummary(
 # create a credibility interval of 95%
 modelplot(econ_norm_data_centered, conf_level = 0.95) +
   labs(x = "95 per cent credibility interval")
+
+# posterior predective check
+pp_check(econ_norm_data_centered) +
+  theme_classic() +
+  theme(legend.position = "bottom")
+
 
 # Save the linear model
 saveRDS(

@@ -5,8 +5,8 @@ author:
   - Hyuk Jang
 thanks: "Code and data are available at: https://github.com/anggimude/OECD."
 date: today
-date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+date-format: long 
+abstract: "Labour productivity is a crucial economical measure as increased labour productivity leads to more output for the same cost which leads to economic growth. Since wage is a significant factor in motivation in working this stimulated a question on how minimum wage may affect labour productivity in the more economical developed countries. Data from OCED for the years 2013 ~ 2022 is used to produce our analysis. In general we observe that a $1 increase in minimum wage is corrleated to an increase in labour productivity by $11.87. It is difficult to conclude the exact effects of miminum wage on labour productivity overall, but we are able to analyze the effects on all selected countries individually."
 format: pdf
 toc: true
 number-sections: true
@@ -34,6 +34,7 @@ library(dplyr)
 library(purrr)
 library(here)
 library(patchwork)
+library(broom.mixed)
 
 # read data
 cleaned_table <- read_csv("~/oecd/data/analysis_data/cleaned_table.csv")
@@ -45,29 +46,28 @@ econ_norm_data_centered <-
 
 # Introduction
 
-Labour productivity(GDP per hour worked) is defined as the amount of goods and services that an individual worker produces in a given amount of time(citation). OECD defines it by how efficiently labour input is combined with other factors of production and used in the production process. Factors that affect worker productivity include technological factors, motivational and behavioral factors, flexibility in internal labour markets, individual rewards, and so forth. This paper intends to look into the correlation between labour productivity and a measurable factor; minimum wage of OECD countries. Maximizing labour productivity is crucial for many countries and its economies because it leads to direct economic growth. Growth in productivity, an economy is able to produce and consume more in other words, produces more goods and services given the same input, allowing consumers to consume more goods and services at a reasonable price. These importance of labour productivity leads us to researching deeper into how hourly minimum wage may affect labour productivity as wage is a large motivating factor for all employees within a capitalist society. For accuracy of data, we use relevant data from the OECD(citation) for only the OECD countries as the member countries stimulate economic progress and world trade. In addition, the majority of OECD countries are high-income economies by the world bank income group, and very high in the human development index. In order to create a precise regression result, we look into the data of GDP per person employed, GDP per head of population, GDP per person employed, and Hourly Wage over the years 2013 to 2022 of all OECD countries other than 9 countries due to the availability to the data. 
+Labour productivity(GDP per hour worked) is defined as the amount of goods and services that an individual worker produces in a given amount of time(@workforcewiki). OECD defines it by how efficiently labour input is combined with other factors of production and used in the production process(@oecd2024gdp). Factors that affect worker productivity include technological factors, motivational and behavioral factors, flexibility in internal labour markets, individual rewards, and so forth. This paper intends to look into the correlation between labour productivity and a measurable factor; minimum wage of OECD countries. Maximizing labour productivity is crucial for many countries and its economies because it leads to direct economic growth. Growth in productivity, an economy is able to produce and consume more in other words, produces more goods and services given the same input, allowing consumers to consume more goods and services at a reasonable price. These importance of labour productivity leads us to researching deeper into how hourly minimum wage may affect labour productivity as wage is a large motivating factor for all employees within a capitalist society. For accuracy of data, we use relevant data from the OECD for only the OECD countries as the member countries stimulate economic progress and world trade. In addition, the majority of OECD countries are high-income economies by the world bank income group, and very high in the human development index. In order to create a precise regression result, we look into the data of GDP per person employed, GDP per head of population, GDP per person employed, and Hourly Wage over the years 2013 to 2022 of all OECD countries other than 9 countries due to the availability to the data. 
 
-This paper will produce a multiple linear regression to analyze the regression coefficients of each factor. The results of the model will be checked by doing a 95% confident interval on the regression coefficients. The results will allow us to analyze the correlation between average minimum hourly wage and average labour productivity, as well as each countries hourly minimum wage and labour productivity. The interaction terms represent how the effect of hourly wage on GDP per hour worked changes across different countries compared to the reference country. The data was obtained from the OECD database(citation). @citeR was used to clean the raw data to what we use for modelling in other to write an analysis of the intended study. The estimand of this paper are the intercept and coefficients of each predictors which correspond to hourly minimum wage and the countries. 
+This paper will produce a multiple linear regression to analyze the regression coefficients of each factor. The results of the model will be checked by doing a 95% confident interval on the regression coefficients. The results will allow us to analyze the correlation between average minimum hourly wage and average labour productivity, as well as each countrys' hourly minimum wage and labour productivity. The interaction terms represent how the effect of hourly wage on GDP per hour worked changes across different countries compared to the reference country. The data was obtained from the OECD database(@oecd2024data1) and (@oecd2024data2). @citeR was used to clean the raw data to what we use for modelling in other to write an analysis of the intended study. The estimand of this paper are the intercept and coefficients of each predictors which correspond to hourly minimum wage and the countries. 
 
 This paper has 4 sections in total not including the introduction. In @sec-data we look at the data that used to carry out the reports including tables and graphs of cleaned data that will be used for the models and the summary statistics. In the next section, we discuss about the models that will be used to analyze our cleaned data, how it is set up and the justifications of it. Next we display and examine the results obtained from the models including tables of the model summaries which helps us make predictions. Lastly, we make final discussions of our results and research based on each cause and dive into some weaknesses that our paper has. In addition, we explore some next steps we or anyone else interested is willing to take after reading this paper. 
-
 
 # Data {#sec-data}
 
 ## Raw Data
 
-The data used in this paper is derived from OECD data explorer for GDP(citataion), and hourly wage(citation). OECD database(citation) provides data of GDP per person employed, GDP per head of population, and GDP per person employed in terms of USD current purchasing power parities of all OECD countries. Minimum wage OECD data provides the minimum hourly wages of all OECD countries in current(2022) USD purchasing power parity for the selected years. For a valid analysis of the trends, we use the data available of the most recent 10 years which is 2013 to 2022. The GDP per hour worked(labour productivity) is used as the dependent variable for our model as we are interested in the correlation between the independent variables which is minimum hourly wage.
+The data used in this paper is derived from OECD data explorer for GDP(@oecd2024data1), and hourly wage(@oecd2024data2). OECD database provides data of GDP per person employed, GDP per head of population, and GDP per person employed in terms of USD current purchasing power parities as of 2022 for all OECD countries. Minimum wage data provides the minimum hourly wages of all OECD countries in current(2022) USD purchasing power parity for the selected years. For a valid analysis of the trends, we use the data available of the most recent 10 years which is 2013 to 2022. The GDP per hour worked(labour productivity) is used as the dependent variable for our model as we are interested in the correlation between the independent variables which is minimum hourly wage.
 
-The cleaning and modelling of the data for this paper was done through R [@citeR] with the aid of the following packages: tidyverse [@citetidyverse], dplyr [@citedplyr], rstanarm [@citerstanarm], ggplot2 [@citeggplot2], modelsummary [@citemodelsummary], kableExtra [@citekableExtra], arrow[@citearrow], tidyr[@citetidyr], purrr[@citepurrr], and broom[@citebroom].
-addddd
+The cleaning and modelling of the data for this paper was done through R [@citeR] with the aid of the following packages: tidyverse [@citetidyverse], dplyr [@citedplyr], rstanarm [@citerstanarm], ggplot2 [@citeggplot2], modelsummary [@citemodelsummary], kableExtra [@citekableExtra], arrow[@citearrow], tidyr[@citetidyr], purrr[@citepurrr], here[@citehere], gt[@citegt], patchwork[@citepatchwork], broom.mixed[@citebroommixed], and broom[@citebroom].
+
 
 ## Cleaned Data
 
 The goal of the cleaning process of this paper is to create a table including GDP per person employed, GDP per head of population, GDP per person employed, Hourly Wage, Year as the columns for each OECD country as the row. To do this we merge the two raw data tables we have downloaded. After merging and doing some minor cleaning like removing repeated columns and rounding to two decimal points. To produce the correlation between average minimum hourly wage and GDP per head of population we must calculate the average hourly wage of all OECD countries for the 10 years. The cleaned table with all relevant data is available in @sec-data_details as the table is too large.
 
-As mentioned, @tbl-cleaned_table is the table that consists of all the data that will be relevant in the analysis in this paper. Below @tbl-countries_used is the table that shows us all 29 countries that are selected for analysis. There are 38 OECD member countries, but we only use 29 due to the availability of data. We won't be provided with an accurate regression result if we fill in missing points from different sources as the sources will not be from the same place creating discrepancies in methods of obtaining the data. Thus, instead of doing so, countries with missing data was removed; only the intersected data of all countries for the columns we have selected were kept and the rest were not considered.
+As mentioned, @tbl-cleaned_table is the table that consists of all the data that will be relevant in the analysis in this paper. Below @tbl-countries_used is the table that shows us all 29 countries that are selected for analysis. There are 38 OECD member countries, but we only use 29 due to the availability of data. An accurate regression result will not be feasible if we fill in missing points from different sources as the sources will not be from the same place creating discrepancies in methods of obtaining the data. Thus, instead of doing so, countries with missing data were removed.
 
-@fig-graph_1 displays @tbl-cleaned_table as a scatter plot. Each scatter plot is a representation of each country's economic metrics. The economic metrics values are changed into log form as the graphs become too difficult to interpret and the log representation shows the trend in a satisfactory manner; it is easier to interpret the trends. We can observe that certain countries have a much higher growth rate compared to the change in hourly wage over time. In general, we are not able to clearly see the trends in hourly wage and GDP per hour worked. This is likely because values of GDP per person employed, GDP per head of population are much larger than GDP per hour worked and hourly wage making the log values of them too small to be able to see a trend in the graph. Ireland and Luxembourg exhibit extreme growth in GDP per person employed and GDP per head of population. It is also observable all countries show a growing trend in all categories over time even if the rate is slow. 
+@fig-graph_1^[Clearer screenshots of all graphs are available at https://github.com/anggimude/OECD] displays @tbl-cleaned_table as a scatter plot. Each scatter plot is a representation of each country's economic metrics. The economic metrics values are changed into logarithmic form as the graphs become too difficult to interpret and the logarithmic representation shows the trend in a satisfactory manner; it is easier to interpret the trends. We can observe that certain countries have a much higher growth rate compared to the change in hourly wage over time. In general, we are not able to clearly see the trends in hourly wage and GDP per hour worked. This is likely because values of GDP per person employed, GDP per head of population are much larger than GDP per hour worked and hourly wage making the logarithmic values too small to be able to see a trend in the graph. Ireland and Luxembourg exhibit extreme growth in GDP per person employed and GDP per head of population. It is also observable all countries show a growing trend in all categories over time even if the rate is slow. 
 
 @fig-graph_2 presents a scatter plot of the GDP per hour worked against hourly wage over time. It is noticeable by looking at the average of the data that there has been an increasing trend in both hourly wage and GDP per hour worked over time. Some significant trends to mention include Spain, Ireland, and the US. Ireland has had a relatively small change in hourly wages while GDP per hour worked has increased remarkably. Spain has had a steep increase in hourly wages from 2018 to 2019 then slowly decreased while GDP per hour worked has increased at a regular rate. The US has decreased their hourly wages from 2013 on but has had an increase in GDP per hour worked the entire time which has converse from what we expected or the average shows. 
 
@@ -78,15 +78,19 @@ As mentioned, @tbl-cleaned_table is the table that consists of all the data that
 #| echo: false
 #| warning: false
 
-countries_used <- sort(unique(cleaned_table$Country) )
-head(countries_used, n = 29) |>
+countries_used <- sort(unique(cleaned_table$Country))
+matrix_data <- matrix(c(head(countries_used, 29), ""), nrow = 5, ncol = 6, byrow = TRUE)
+
+matrix_data |>
   kable(
-    col.names = c("Country"),
-    align = c("l"), 
+    align = c("l", "l", "l", "l", "l", "l"), 
     booktabs = TRUE, 
     linesep = ""
   )
+
+
 ```
+
 
 ```{r}
 #| label: fig-graph_1
@@ -116,29 +120,23 @@ ggplot(long_data, aes(x = Time, y = Value, color = Metric)) +
 #| warning: false
 #| message: false
 
-
 short_data <- cleaned_table |>
   pivot_longer(cols = c(`GDP per hour worked`, `Hourly Wage`),
                names_to = "Metric",
                values_to = "Value") |>
   filter(Metric %in% c("GDP per hour worked", "Hourly Wage"))
 
-# Calculate yearly averages
 yearly_averages <- short_data %>%
   group_by(Time, Metric) %>%
   summarize(Value = mean(Value, na.rm = TRUE)) %>%
-  mutate(Country = "Average")  # Label these as 'Average' to distinguish in the plot
+  mutate(Country = "Average") 
 
-# Combine yearly averages with the original data
 combined_data <- bind_rows(short_data, yearly_averages)
 
-# Calculate a rescaling factor
 wage_scale <- max(combined_data %>% filter(Metric == "GDP per hour worked") %>% pull(Value)) /
   max(combined_data %>% filter(Metric == "Hourly Wage") %>% pull(Value))
 
-# Plot with separate scales and averages
 ggplot(combined_data, aes(x = Time)) +
-  # GDP per hour worked
   geom_point(
     data = combined_data %>% filter(Metric == "GDP per hour worked" & Country != "Average"),
     aes(y = Value, color = "GDP per hour worked")
@@ -147,7 +145,6 @@ ggplot(combined_data, aes(x = Time)) +
     data = combined_data %>% filter(Metric == "GDP per hour worked" & Country == "Average"),
     aes(y = Value, color = "GDP per hour worked", linetype = "Average")  # Line for average
   ) +
-  # Hourly Wage with rescaling
   geom_point(
     data = combined_data %>% filter(Metric == "Hourly Wage" & Country != "Average"),
     aes(y = Value * wage_scale, color = "Hourly Wage")
@@ -176,7 +173,7 @@ ggplot(combined_data, aes(x = Time)) +
 
 ## Basic Summary Statistics
 
-@tbl-sumsta is a representation of a summary of the economic metrics data. The summary includes the minimum, maximum, mean, standard deviation, variance, and number of observations of the four different economic metrics we are using in this paper. We have a total of 290 observations because we have data of 29 countries for a 10 year period. It is shown that the mean hourly wage is 8 with a minimum of 1 and a maximum of 14, and the similar works for the other metrics as well. It is crucial to mention the notable variances which come from the large range of GDP per person employed and GDP per head of population. For instance, GDP per person employed has a minimum of 29380 and a maximum of 269404 which is a significantly large range. GDP per hour worked is less variant as the mean stays at 52 with a minimum of 12 and maximum of 163.
+@tbl-sumsta is a representation of a summary of the economic metrics data. The summary includes the minimum, maximum, mean, standard deviation, variance, and number of observations of the four different economic metrics we are using in this paper. We have a total of 290 observations because we have data of 29 countries for a 10 year period. It is shown that the mean hourly wage is 8 with a minimum of 1 and a maximum of 14, and the similar works for the other metrics as well. It is crucial to mention the notable variances which come from the large range of GDP per person employed and GDP per head of population. For instance, GDP per person employed has a minimum of 29,380 and a maximum of 269,404 which is a significantly large range. GDP per hour worked is less variant as the mean stays at 52 with a minimum of 12 and maximum of 163.
 
 
 ```{r}
@@ -200,7 +197,7 @@ The goal of the Bayesian model is to incorporate prior knowledge, such as insigh
 
 ## Model set-up
 
-Thelinear regression models utilized in this paper is run on R [@citeR] using the `rstanarm` package of @citerstanarm. We use the default priors from `rstanarm`. The response variable $y_i$ is defined as an individual observation of 'GDP per hour worked' for each combination of hourly wage and its corresponding country. The intercept $\alpha$ represents the intercept of our linear model. It is the expected value of $y_i$ when all predictors are held at reference level. Each $\beta_j$ is the coefficient associated with each predictor in our model. This would correspond to the different countries and years. $\beta_j$ tells us the change in the expected GDP per hour worked to per unit change in the predictor assuming all else is held constant. We have specified that both $\alpha$ and $\beta_j$ will have normal priors with a mean of 0 and a standard deviation of 2.5. With this, the `rstanarm` model will internally adjust the priors based on the scale of the predictors to help with the convergence and effectiveness. The error term $\sigma$ is the standard deviation of the residual errors in our model. By default, the `rstanarm` uses the student-t distribution with 3 degrees of freedom for the standard deviation.
+The linear regression models utilized in this paper is run on R [@citeR] using the `rstanarm` package of @citerstanarm. We use the default priors from `rstanarm`. The response variable $y_i$ is defined as an individual observation of 'GDP per hour worked' for each combination of hourly wage and its corresponding country. The intercept $\alpha$ represents the intercept of our linear model. It is the expected value of $y_i$ when all predictors are held at reference level. Each $\beta_j$ is the coefficient associated with each predictor in our model. This would correspond to the different countries and years. $\beta_j$ tells us the change in the expected GDP per hour worked to per unit change in the predictor assuming all else is held constant. We have specified that both $\alpha$ and $\beta_j$ will have normal priors with a mean of 0 and a standard deviation of 2.5. With this, the `rstanarm` model will internally adjust the priors based on the scale of the predictors to help with the convergence and effectiveness. The error term $\sigma$ is the standard deviation of the residual errors in our model. By default, the `rstanarm` uses the student-t distribution with 3 degrees of freedom for the standard deviation.
 
 \begin{align}
 y_i \mid \mu_i, \sigma &\sim \text{Normal}(\mu_i, \sigma^2) \\
@@ -220,36 +217,50 @@ Based on our inference from @fig-graph_2 and @tbl-cleaned_table, we create a new
 
 ## Overview of model results
 
-Our results are summarized in @tbl-modelsum. We are primarily interested how labour productivity changes from its predictors. The normal distribution model provides us with the estimates for the intercept and coefficients for the predictors which the 29 countries and its hourly wage correlation as well. The model results will display the estimates - posterior means or medians for each coefficient including the intercept, uncertainty measures - credible intervals. The output values of each predictor is the regression coefficient, meaning how much the outcome is expected to increase or decrease with a one unit increase in hourly wage of that country, holding all else constant. The value in the brackets represent the Median Absolute Deviation of the posterior distributions of the coefficients. It conveys the dispersion around the median of each coefficient's posterior distribution, exhibiting how spread the distributions are. Num.Obs represents the number of observations made in the model. R2 is the R-squared value which is the proportion of variance in the dependent variable that can be explained by the independent variable. The R2 adj is the adjusted R squared which accounts for the number of predictors used. Log.lik is the log-likelihood which gives us an idea of the likelihood of the data, higher is better, but this is typically used for comparison between models. ELPD and ELPD s.e. explains the log predictive density and its standard error. The ELPD measures the sum of the log predictive densities for each observation, used for model comparison. LOOIC is an acronym for leave-one-out information criterion in which a lower value indicates a model with better out-of-sample predictive performance. WAIC stands for Watanabe-Akaike information criterion which is another measure of good fit; lower values are better fit. RMSE is the room mean squared error measuring the model's predictive performance where the lower values mean more accurate predicts. 
+Our results are summarized in @tbl-modelsum-1 and @tbl-modelsum-2. We are primarily interested how labour productivity changes from its predictors. The normal distribution model provides us with the estimates for the intercept and coefficients for the predictors which the 29 countries and its hourly wage correlation as well. The model results will display the estimates - posterior means or medians for each coefficient including the intercept, and uncertainty measures - credible intervals. The output values of each predictor is the regression coefficient, meaning how much the outcome is expected to increase or decrease with a unit increase in hourly wage of that country, holding all else constant. The value in the brackets represent the Median Absolute Deviation of the posterior distributions of the coefficients. It conveys the dispersion around the median of each coefficient's posterior distribution, exhibiting how spread the distributions are. Num.Obs represents the number of observations made in the model. R2 is the R-squared value which is the proportion of variance in the dependent variable that can be explained by the independent variable. The R2 adj is the adjusted R squared which accounts for the number of predictors used. Log.lik is the log-likelihood which gives us an idea of the likelihood of the data, higher is better, but this is typically used for comparison between models. ELPD and ELPD s.e. explains the log predictive density and its standard error. The ELPD measures the sum of the log predictive densities for each observation, used for model comparison. LOOIC is an acronym for leave-one-out information criterion in which a lower value indicates a model with better out-of-sample predictive performance. WAIC stands for Watanabe-Akaike information criterion which is another measure of good fit; lower values are better fit. RMSE is the room mean squared error measuring the model's predictive performance where the lower values mean more accurate predicts. 
 
 ## Normal regression results {#sec-results}
 
-@tbl-modelsum is a table of the results from our model. The intercept is the baseline value which in our case is 52.15 implying the expected GDP per hour worked when hourly wage centered is at its mean $0. Hourly wage centered 11.24 conveys that for each unit(dollar 2022 PPPs) increase in hourly wage is expected to lead to an increase in GDP per hour worked by 11.24(dollar 2022 PPPs). Some notable trends in the results include Belgium, France, Australia, and Columbia. Belgium has a correlation coefficient of 301.27 and a standard deviation of 62.93. This describes that Belgium has a higher GDP per hour worked than the average by around 301.27 units when the hourly wage centered is at zero. Similarly, France is expected to have a labour productivity 327.19 units lower than the average at average centered wage, Australia 77.42 units lower, and Columbia 71.37 units higher. With the model having a R-squared value of 0.791 is a good level of explanatory power supporting the accuracy of the results. The interaction effects Hourly_Wage_Centered*Country captures how the relationship between hourly wage centered and GDP per hour worked by country compared to the averages. For instance, Belgium has a interaction effect of -67.43 implying the effect of an increase in hourly wage centered on GDP per hour worked is 67.43 units lower than the reference country. The adjusted R-squared value is at 0.934, which is lower than the R-squared value of 0.942 indicates strong results as 94.2% of the variance on GDP per hour worked is justified by the model. The RMSE is at 5.06 telling us the average magnitude of the model's prediction errors and the value indicates better predictive accuracy. Lower values imply better fit so we can assume that GDP per hour worked is predicted accurately. Thus, by ignoring values like LOOIC and WAIC as we don't have another model to compare it to and analyzing other results, we can conclude that the model is performing well on the data set we have cleaned. Further evaluation of the model results will be done in @sec-model_details. 
+@tbl-modelsum-1, @tbl-modelsum-2 are both tables of the results from our model. The intercept is the baseline value which in our case is 52.15 implying the expected GDP per hour worked when hourly wage centered is at its mean $0. Hourly wage centered 11.24 conveys that for each unit(dollar 2022 PPPs) increase in hourly wage is expected to lead to an increase in GDP per hour worked by 11.24(dollar 2022 PPPs). Some notable trends in the results include Belgium, France, Australia, and Columbia. Belgium has a correlation coefficient of 301.27 and a standard deviation of 62.93. This describes that Belgium has a higher GDP per hour worked than the average by around 301.27 units when the hourly wage centered is at zero. Similarly, France is expected to have a labour productivity 327.19 units lower than the average at average centered wage, Australia 77.42 units lower, and Columbia 71.37 units higher. The interaction effects Hourly_Wage_Centered*Country captures how the relationship between hourly wage centered and GDP per hour worked by country are compared to the averages. For instance, Belgium has a interaction effect of -67.43 implying the effect of an increase in hourly wage centered on GDP per hour worked is 67.43 units lower than the reference country. The adjusted R-squared value is at 0.934, which is lower than the R-squared value of 0.942 indicates strong results as 94.2% of the variance on GDP per hour worked is justified by the model. The RMSE is at 5.06 telling us the average magnitude of the model's prediction errors and the value indicates better predictive accuracy. Lower values imply better fit so we can assume that GDP per hour worked is predicted accurately. Thus, by ignoring values like LOOIC and WAIC as we don't have another model to compare it to and analyzing other results, we can conclude that the model is performing well on the data set we have cleaned. Further evaluation of the model results will be done in @sec-model-details. 
 
 
 ```{r}
 #| echo: false
 #| eval: true
-#| label: tbl-modelsum
-#| tbl-cap: "Linear model summary"
+#| label: tbl-modelsum-1
+#| tbl-cap: "Linear model summary - 1"
 #| warning: false
 
-modelsummary(
-  list(
-    "Gaussian(Normal)" = econ_norm_data_centered
-  ),
-  statistic = "mad",
-  fmt = 2,
-  output = "kableExtra"
-) |>
-  kable_styling(font_size = 8.5)
+
+model_summary <- tidy(econ_norm_data_centered)
+
+n <- nrow(model_summary)
+mspt1 <- model_summary[1:(n %/% 2), ]
+mspt2 <- model_summary[(n %/% 2 + 1):n, ]
+
+mspt1 |>
+  kable("markdown", booktabs = TRUE, digits = 2, caption = "Model Summary - Part 1", align = c("l", "r", "r"), col.names = c("Term", "Coefficient", "Standard Error")) |>
+  kable_styling(font_size = 8.5, latex_options = c("repeat_header"))
+
+
+```
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-modelsum-2
+#| tbl-cap: "Linear model summary - 2"
+#| warning: false
+
+mspt2 |>
+  kable("markdown", booktabs = TRUE, digits = 2, caption = "Model Summary - Part 2", align = c("l", "r", "r"), col.names = c("Term", "Coefficient", "Standard Error")) |>
+  kable_styling(font_size = 8.5, latex_options = c( "repeat_header"))
+
+
 ```
 
 
-
 # Discussion
-
-## First discussion point {#sec-first-point}
+## Further analysis of model results {#sec-first-point}
 
 
 ```{r}
@@ -293,23 +304,20 @@ plot2 <- ggplot(growthrate, aes(x = Time, y = growth_rate)) +
        y = "Growth Rate (%)") +
   theme_minimal()
 
-# Combine plots side by side using patchwork
 plot1 + plot2
 ```
-To look into the general trend of the growth rate, we further analyze @fig-graph_2 to create @fig-grpah_3. This graph shows that on average, countries have been experiencing an increase in its labour productivity growth rate for the past decade while the rate of growth of hourly wages have been decreasing. This exhibits some discrepancies from what people generally assume and the actual results because we tend to expect that a higher salary will improve labour productivity. A noticeable trend from the average growth rate of hourly wage is that since 2020, there has been a steep decline. From 2020, the COVID-19 pandemic occurred which had led to the COVID-19 recession. From this inference, due to the global economic recession, we had a spike in inflation decreasing the real wage growth rate. This is correlated to our analysis and graph because we have standardized all values to US dollar purchasing power parities as of 2022, we are able to observe the real effects of these events on the economy. This partially explains the decrease in labour productivity from 2020 to 2021 as this must also be from the lockdown and the recession decreasing consumer confidence. The reason behind the growth in labour productivity may be from various reasons such as technological improvements, investments in human capital, investments in physical capital, and improved management practices. For the past few decades, technology has been improving at a significant rate each year which could be the underlying reason to labour productivity growth. 
 
-From @fig-graph_2, most countries, when scaled like our graph, have similar values in GDP per hour worked and hourly wage while some countries are able to reach the same level of labour productivity with lower minimum wages and some can't reach that level with even higher minimum wages implying that there may not be a strong correlation between minimum wage and labour productivity. One reasoning to such tendencies can be from the different costs of living and purchasing power. More developed countries with higher cost of living set the minimum wage high so that citizens are able to afford basic needs. For example, countries like the US, Australia, Canada, Luxembourg, UK, and Netherlands have a high price level index leading to higher minimum wages (citation). Some countries may even intentionally increase their minimum wage to fight income inequalities. For example, Australia has used such methods and has seen positive results with a tight labour market and an increase in minimum wages led to the unemployment averaging at 3.8%; lowest in 50 years (citation). Others may be supplementing lower minimum wages by providing generous social benefits. 
-i need to write a lot more
+To look into the general trend of the growth rate, we further analyze @fig-graph_2 to create @fig-graph_3. This graph shows that on average, countries have been experiencing an increase in its labour productivity growth rate for the past decade while the rate of growth of hourly wages have been decreasing. This exhibits some discrepancies from what people generally assume and the actual results because we tend to expect that a higher salary will improve labour productivity. A noticeable trend from the average growth rate of hourly wage is that since 2020, there has been a steep decline. From 2020, the COVID-19 pandemic occurred which had led to the COVID-19 recession. From this inference, due to the global economic recession, we had a spike in inflation decreasing the real wage growth rate. This is correlated to our analysis and graph because we have standardized all values to US dollar purchasing power parities as of 2022, we are able to observe the real effects of these events on the economy. This partially explains the decrease in labour productivity from 2020 to 2021 as this must also be from the lockdown and the recession decreasing consumer confidence. The reason behind the growth in labour productivity may be from various reasons such as technological improvements, investments in human capital, investments in physical capital, and improved management practices(@investopedia2024productivity). For the past few decades, technology has been improving at a significant rate each year which could be the underlying reason to labour productivity growth. 
 
-## Second discussion point
-How has the US lowered its hourly wage while haivng an increase in its GDP per hour worked?
+From @fig-graph_2, most countries, when scaled like our graph, have similar values in GDP per hour worked and hourly wage while some countries are able to reach the same level of labour productivity with lower minimum wages and some can't reach that level with even higher minimum wages implying that there may not be a strong correlation between minimum wage and labour productivity. One reasoning to such tendencies can be from the different costs of living and purchasing power. More developed countries with higher cost of living set the minimum wage high so that citizens are able to afford basic needs. For example, countries like the US, Australia, Canada, Luxembourg, UK, and Netherlands have a high price level index leading to higher minimum wages (@statista2022price). Some countries may even intentionally increase their minimum wage to fight income inequalities. For example, Australia has used such methods and has seen positive results with a tight labour market and an increase in minimum wages led to the unemployment averaging at 3.8%; lowest in 50 years (@acoss2024wage). Others may be supplementing lower minimum wages by providing generous social benefits. 
 
-## Third discussion point
-How has Ireland had so much growth? maybe combine with the US?
+Belgium has an interaction term coefficient of -67.43, suggesting an increase in the minimum wage has substantially lower effect on labour productivity than the average. A possible motive behind this could be related to Belgium's labour market structure and wage policies. Belgium uses the automatic wage indexation system which is the annual adjustment of minimum wages and pay levels in line with the cost of living(@evertys2023wage, @eurofound2021belgium). This policy helps maintain stable real incomes whilst creating a disconnection in between wages and labour productivity as the policy is aimed to fight inflation instead of optimizing productivity(@oecd2023labor). In addition, Belgium is a high income country with a generous social welfare system thus additional increases in minimum wages may not necessarily be a strong driving factor for labour productivity. France has a positive interaction effect indicating an increase in minimum wage will increase labour productivity by 48.34. High value sectors such as manufacturing and services in France receive significant investments in technology and innovation in emphasis of the productivity driven economic policies. This emphasis on capital investment allows workers to be more productive, especially as wage rises(@eurostat2023labor). Furthermore, French labour laws and work culture favors efficient work methods which may be the underlying reason to such results. The educational and vocational training systems can also be policies that link minimum wage and productivity closer as the labour force is trained enough and the quality is relatively high. As mentioned in the previous sections, Luxembourg and the United States exhibit odd trends compared to the average. Luxembourg has a interaction effect coefficient of 14.67 which is slightly above the average. This could be related to Luxembourg's highly skilled workforce and high cost of living, where higher minimum wages are common to fight inflation(@liser2022luxembourg). The coefficient of US -25.53 might be a representation of the wide range of productivity across different sectors. In the US, wage changes tend to reflect inflation as it is usually driven by cost of living changes for lower wage and less skilled sectors(@bls2022labor). Since COVID-19 pandemic, there has been a start-up boom and start-ups drive up productivity as they adopt new technologies, advance innovation, and make the market more competitive. Such trends may have allowed the US to lower minimum wages but have improvements in labour productivity over the years. Thus, these results highlight the complexity of the wage to labour productivity correlations as many factors such as country, policy, economic structure, and so forth must be taken into account for an accurate analysis. 
+
 
 ## Weaknesses and next steps
 
-Weaknesses and next steps should also be included.
+In this paper, within the processes of analysis of data, there may exist a plethora of weaknesses. One weakness of our analysis is that we have not considered and analyzed all the possible different economic policies or economic fluctuations for each country. For an accurate research, one may expect a detailed explanation on how each country uses different policies to improve labour productivity however since the data is so big, and it is very difficult to conclude the effects on the average country we extract this for later. Another weakness is that we lack predictors. In order to accurate calculate the effect of we must add all the other factors that may influence labour productivity. Without adding other factors and only looking into the correlation between labour productivity and minimum wages can lead to fallacies in properly understanding the results. Our results currently display the correlation between labour productivity and minimum wage but these results include potential effects of other factors inclusive, thus making our results not as accurate as we desire. This helps us know what we can take and improve in the next steps. For future studies, this paper can provide generally analyzed data for labour productivity and minimum wage, so one can further gather data of other predictors or study deeper into a country's economic policies and its correlation to labour productivity. This is not done in this paper as we intend to look at OECD countries for 10 years and data for other significant predictors is very difficult due to its ambiguity. 
+
 
 \newpage
 
@@ -354,6 +362,9 @@ pp_check(econ_norm_data_centered) +
 ```
 
 In @fig-ppcheck we implement a posterior predictive check. This show the comparison between the simulated data to the actual observed data to assess whether the model is adequate. This shows the comparison for the poisson model and we can assess how well each model fits the observed data. Based on the check we can conclude that the multiple linear model fits the observed data as the trace of the Y plot follows the trends of Yrep. 
+
+## Credibility interval
+@fig-credintv is a visualization of the estimated effect of each predictor on the outcome variable. The credibility interval we have created is the range in which we can say the true value of the coefficient lies with 95% credibility. 
 
 
 ```{r}
